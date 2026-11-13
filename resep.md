@@ -862,3 +862,36 @@ lauk, dan harga warung tidak selalu setara.
 6.  Tambahkan sayuran dan masak sampai sedikit layu.
 7.  Masukkan makaroni, kecap, garam, dan merica.
 8.  Aduk rata selama 2--3 menit, lalu sajikan.
+
+------------------------------------------------------------------------
+
+## Tips hemat dan aman untuk anak kos
+
+1.  **Pakai bahan lintas resep.** Bawang, telur, tempe, tahu, kol,
+    wortel, dan cabai bisa dipakai untuk beberapa menu agar tidak banyak
+    bahan tersisa.
+2.  **Belanja sesuai rencana.** Pilih sayur yang bisa dipakai dalam 2--3
+    hari. Simpan sayur kering dan terbungkus di kulkas bila tersedia.
+3.  **Masak nasi secukupnya.** Nasi sisa harus segera didinginkan,
+    disimpan tertutup di kulkas, dan dipanaskan sampai benar-benar panas
+    sebelum dimakan. Jangan membiarkan nasi matang semalaman pada suhu
+    ruang.
+4.  **Pisahkan bahan mentah dan matang.** Gunakan talenan/piring berbeda
+    untuk bahan mentah dan makanan siap santap; cuci tangan serta alat
+    setelah menangani ayam atau ikan mentah.
+5.  **Pastikan protein matang.** Ayam harus matang hingga bagian
+    terdalam; telur dimasak sesuai tingkat kematangan yang aman; ikan
+    dipanaskan atau dimasak merata.
+6.  **Gunakan api sedang.** Untuk porsi kecil, wajan kecil membantu
+    menghemat minyak dan mempercepat proses.
+7.  **Sesuaikan pedas dan porsi.** Cabai bisa dikurangi atau
+    dihilangkan. Tambahkan nasi, sayur, atau protein sesuai kebutuhan
+    makan.
+8.  **Hitung biaya dengan realistis.** Jika harus membeli satu botol
+    kecap atau satu bungkus minyak, pengeluaran awal bisa lebih besar
+    daripada budget resep. Namun sisa bahan dapat dipakai untuk beberapa
+    kali memasak.
+
+*Dokumen ini merupakan panduan resep rumahan dan estimasi anggaran,
+bukan daftar harga resmi. Periksa harga bahan di pasar atau toko sekitar
+sebelum berbelanja.*
