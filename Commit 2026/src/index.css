@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+  overflow-x: hidden;
+}
+
+/* Swipe card */
+.swipe-card {
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+  touch-action: pan-y;
+  user-select: none;
+}
+.swipe-card.dragging { transition: none; }
+.swipe-right-anim { transform: translateX(130%) rotate(18deg) !important; opacity: 0 !important; }
+.swipe-left-anim  { transform: translateX(-130%) rotate(-18deg) !important; opacity: 0 !important; }
+.badge-stamp { transition: opacity 0.15s ease, transform 0.15s ease; }
+
+/* Recipe modal entrance (referenced as animate-[fadeIn_0.2s_ease]) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
