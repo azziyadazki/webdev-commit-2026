@@ -7,7 +7,7 @@
   Informasi         Detail
   ----------------- -------------------------------
   Dokumen           Product Requirements Document
-  Versi             1.0
+  Versi             1.1
   Tanggal           13 November 2026
   Status            Draft -- MVP
   Platform          Web Application
@@ -133,8 +133,8 @@ Menyediakan navigasi menuju AI Meal Planner.
 #### Recipe Detail
 
 Ketika pengguna memilih resep, sistem menampilkan: 1. Gambar masakan. 2.
-Nama dan deskripsi resep. 3. Estimasi waktu memasak. 4. Jumlah porsi. 5.
-Peralatan yang dibutuhkan. 6. Daftar bahan dan kuantitasnya. 7. Estimasi
+Nama dan deskripsi resep. 3. Estimasi waktu memasak.  4. Tingkat kesulitan memasak, 
+5.Peralatan yang dibutuhkan. 6. Daftar bahan dan kuantitasnya. 7. Estimasi
 harga setiap bahan. 8. Total estimasi biaya memasak. 9. Langkah-langkah
 memasak. 10. Estimasi harga apabila membeli makanan serupa. 11. Potensi
 penghematan.
@@ -162,7 +162,7 @@ Sistem menanyakan peralatan dan bahan yang dimiliki pengguna.
 **A. Cooking Equipment**
 
 Contoh: - Rice cooker. - Kompor. - Wajan. - Panci. - Pisau. - Talenan. -
-Microwave.
+Microwave. untuk alat user cukup klik pada alat - alat yang kita sediakan pada laman
 
 Pengguna dapat memilih lebih dari satu peralatan.
 
@@ -171,7 +171,7 @@ Pengguna dapat memilih lebih dari satu peralatan.
 Contoh: - Beras. - Telur. - Tempe. - Tahu. - Bawang merah. - Bawang
 putih. - Kecap. - Minyak goreng.
 
-Pengguna dapat memasukkan bahan secara manual. Setiap bahan dapat
+Pengguna dapat memasukkan bahan secara manual/ketik. Setiap bahan dapat
 memiliki informasi kuantitas dan satuan agar sistem dapat memperkirakan
 bahan yang masih perlu dibeli.
 
@@ -184,12 +184,12 @@ Ketentuan: - Minimal: 1 hari. - Maksimal: 7 hari.
 Sistem juga menanyakan frekuensi memasak setiap hari, misalnya: - 1 kali
 sehari. - 2 kali sehari. - 3 kali sehari.
 
-`Total kebutuhan resep = Jumlah hari × Frekuensi memasak per hari`
+`Total kebutuhan resep = secukupnya, yang penting jangan sampai overbudget
 
 #### Step 3 -- Budget Configuration
 
 Sistem meminta pengguna menentukan total budget untuk seluruh periode
-perencanaan.
+perencanaan yang telah diisi user tadi.
 
 Contoh: **Rp150.000**.
 
@@ -247,11 +247,11 @@ makan.
 
 Contoh struktur:
 
-  Hari     Pagi         Siang            Malam
+  Hari     Senin         Selasa           Rabu
   -------- ------------ ---------------- -------------
-  Senin    Nasi telur   Tumis tempe      Sayur sop
-  Selasa   Nasi kecap   Ayam teriyaki    Tahu crispy
-  Rabu     Nasi telur   Tumis kangkung   Orek tempe
+  Resep 1   Nasi telur   Tumis tempe      Sayur sop
+  Resep 2   Nasi kecap   Ayam teriyaki    Tahu crispy
+  Resep 3   Nasi telur   Tumis kangkung   Orek tempe
 
 Tabel menyesuaikan frekuensi memasak yang dipilih pengguna.
 
@@ -270,12 +270,11 @@ ke homepage.
 
 Homepage memiliki section tambahan bernama **"Meal Plan Saya"**.
 
-Section ini menampilkan: - Nama atau periode meal plan. - Tanggal
-perencanaan. - Jumlah hari. - Total estimasi pengeluaran. - Total
-potensi penghematan. - Progress memasak.
+Section ini menampilkan meal plan yang tersimpan di browser: - Nama atau periode meal plan. - Tanggal perencanaan. - Jumlah hari. - Total estimasi pengeluaran. - Total potensi penghematan.
 
 Pengguna dapat membuka kembali meal plan dan melihat seluruh resep di
-dalamnya.
+dalamnya. Data meal plan disimpan di local storage browser, tanpa akun
+atau sinkronisasi antarperangkat.
 
 ------------------------------------------------------------------------
 
@@ -297,15 +296,14 @@ dalamnya.
 
 ### 5.3 Security
 
--   Password pengguna harus disimpan dalam bentuk hash.
--   Data pengguna hanya dapat diakses oleh pemilik akun.
+-   Data meal plan disimpan di penyimpanan lokal browser (local storage) pada perangkat pengguna.
+-   Sistem perlu menangani kondisi ketika penyimpanan lokal browser tidak tersedia atau kapasitasnya penuh.
 -   API key AI tidak boleh diekspos di frontend.
 -   Validasi dilakukan di sisi frontend dan backend.
 
 ### 5.4 Reliability
 
--   Meal plan yang telah disimpan tidak hilang ketika pengguna melakukan
-    refresh.
+-   Meal plan yang disimpan secara lokal tetap tersedia setelah halaman di-refresh selama data browser tidak dihapus.
 -   Sistem memberikan penanganan ketika AI gagal menghasilkan
     rekomendasi.
 -   Perhitungan budget dilakukan oleh backend, bukan hanya mengandalkan
@@ -330,7 +328,7 @@ AI merupakan komponen utama pada fitur Meal Planner.
 ### 6.2 AI Constraints
 
 -   AI tidak boleh menjadi satu-satunya sumber data harga.
--   Harga bahan harus berasal dari database harga yang dikelola sistem.
+-   Harga bahan harus berasal dari database harga rata-rata pasar Yogyakarta yang dikelola sistem dan memiliki tanggal pembaruan.
 -   AI bertugas melakukan pemilihan dan penyusunan resep berdasarkan
     data tersebut.
 -   AI tidak boleh mengklaim resep berada dalam budget apabila
@@ -379,13 +377,11 @@ validasi ulang menggunakan database harga.
 
 Sistem membutuhkan beberapa jenis data utama.
 
-### 7.1 User Data
+### 7.1 Local Storage Data
 
--   User ID.
--   Nama.
--   Email.
--   Password hash.
--   Tanggal registrasi.
+-   Data meal plan yang disimpan pengguna.
+-   Informasi konfigurasi meal plan yang diperlukan untuk menampilkan kembali rencana.
+-   Data disimpan di browser/perangkat pengguna tanpa memerlukan akun.
 
 ### 7.2 Recipe Data
 
@@ -395,7 +391,6 @@ Sistem membutuhkan beberapa jenis data utama.
 -   Gambar.
 -   Kategori.
 -   Waktu memasak.
--   Jumlah porsi.
 -   Tingkat kesulitan.
 -   Daftar bahan.
 -   Daftar peralatan.
@@ -406,7 +401,7 @@ Sistem membutuhkan beberapa jenis data utama.
 -   Ingredient ID.
 -   Nama bahan.
 -   Satuan.
--   Harga referensi.
+-   Harga referensi berupa rata-rata pasar Yogyakarta.
 -   Harga per satuan.
 -   Kategori.
 -   Tanggal pembaruan harga.
@@ -414,7 +409,6 @@ Sistem membutuhkan beberapa jenis data utama.
 ### 7.4 Meal Plan Data
 
 -   Meal Plan ID.
--   User ID.
 -   Tanggal mulai.
 -   Durasi.
 -   Frekuensi memasak.
@@ -428,8 +422,6 @@ Sistem membutuhkan beberapa jenis data utama.
 -   Meal Plan ID.
 -   Recipe ID.
 -   Hari keberapa.
--   Waktu makan.
--   Jumlah porsi.
 -   Estimasi biaya.
 
 ------------------------------------------------------------------------
@@ -513,17 +505,15 @@ fitur dibagi menjadi beberapa prioritas.
 
 ### Should Have (P1)
 
--   Autentikasi pengguna.
--   Daftar meal plan sebelumnya.
+-   Daftar meal plan sebelumnya yang tersimpan secara lokal.
 -   Daftar belanja otomatis.
--   Progress memasak.
 -   Alternatif bahan.
 -   Filter kategori resep.
 -   Penggunaan sisa bahan dari resep sebelumnya.
 
 ### Could Have (P2)
 
--   Integrasi harga bahan dari toko atau pasar lokal.
+-   Pembaruan database harga rata-rata bahan makanan di pasar Yogyakarta.
 -   Rekomendasi berdasarkan preferensi makanan.
 -   Kalkulasi nutrisi.
 -   Notifikasi jadwal memasak.
@@ -581,7 +571,7 @@ MVP dinyatakan siap untuk diuji ketika:
 7.  Sistem dapat menghitung total pengeluaran dan sisa budget.
 8.  Sistem dapat menghasilkan meal plan berdasarkan pilihan pengguna.
 9.  Pengguna dapat membuka detail setiap resep.
-10. Meal plan dapat disimpan dan ditampilkan kembali pada homepage.
+10. Meal plan dapat disimpan secara lokal tanpa akun dan ditampilkan kembali pada homepage.
 11. Seluruh fitur utama dapat digunakan pada desktop dan mobile.
 
 ------------------------------------------------------------------------
@@ -704,7 +694,7 @@ makanan. - Mengurangi food waste. - Menghemat waktu menentukan menu.
   Backend            Python FastAPI
   Database           PostgreSQL
   AI                 LLM API
-  Authentication     Supabase Auth
+  Local Storage       Browser Local Storage
   Database Hosting   Supabase
   Deployment         Vercel + Backend Hosting
 
@@ -713,20 +703,13 @@ dengan kemampuan serta kebutuhan tim.
 
 ------------------------------------------------------------------------
 
-## 17. Open Questions -- Before Development
+## 17. Keputusan Produk yang Telah Ditetapkan
 
-Sebelum development dimulai, tim perlu memvalidasi beberapa keputusan
-produk:
+Berdasarkan hasil klarifikasi, keputusan berikut menjadi acuan development:
 
-1.  **Sumber harga bahan:** Apakah harga bahan menggunakan harga
-    rata-rata pasar Yogyakarta atau harga dari toko tertentu?
-2.  **Autentikasi:** Apakah pengguna wajib memiliki akun untuk membuat
-    meal plan? Rekomendasi awal: sediakan guest mode untuk mengurangi
-    hambatan penggunaan.
-3.  **Pelacakan pengeluaran:** Apakah meal plan hanya menghasilkan
-    rekomendasi atau juga melacak realisasi pengeluaran setelah memasak?
-    Rekomendasi awal: jadikan pelacakan realisasi sebagai pengembangan
-    berikutnya.
+1.  **Sumber harga bahan:** Sistem menggunakan harga rata-rata pasar Yogyakarta sebagai harga referensi. Harga bersifat estimasi dan perlu dilengkapi tanggal pembaruan agar pengguna memahami bahwa harga aktual dapat berbeda.
+2.  **Autentikasi dan penyimpanan:** Pengguna tidak perlu membuat akun. Meal plan disimpan secara lokal di browser/perangkat pengguna (local storage). Data lokal tidak otomatis tersinkronisasi antarperangkat dan dapat hilang jika data browser dihapus.
+3.  **Pelacakan pengeluaran aktual:** Tidak termasuk dalam cakupan produk. DapurKos hanya menampilkan estimasi biaya dan potensi penghematan sebelum memasak, tanpa meminta pengguna mencatat realisasi pengeluaran setelah memasak.
 
 ------------------------------------------------------------------------
 
